@@ -16,7 +16,8 @@
 - [ ] Not run
 - [ ] Manual test completed
 - [ ] Automated tests completed
+- [ ] Vercel Preview checked
 
 ## Notes
 
-Add screenshots, API examples, migration notes, or review concerns here.
+Add screenshots, Vercel Preview links, API examples, migration notes, or review concerns here.

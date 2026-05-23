@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LearnCare Chart — MVP Prototype</title>
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <!-- Spoqa Han Sans Neo -->
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" />
+  <!-- IBM Plex Sans KR + Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- mock data (plain JS, must load before babel scripts) -->
+  <script src="data.js"></script>
+
+  <template id="__bundler_thumbnail" data-bg-color="#2e3a7e">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(420 220)" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="0" y="40" width="360" height="380" rx="28" fill="#ffffff22" />
+        <rect x="105" y="0" width="150" height="70" rx="14" fill="#ffffff" stroke="none" />
+        <path d="M60 200 L60 380 L300 380" />
+        <path d="M120 360 L120 300 M180 360 L180 250 M240 360 L240 200" />
+        <circle cx="120" cy="300" r="10" fill="#ffd166" stroke="none" />
+        <circle cx="180" cy="250" r="10" fill="#ef476f" stroke="none" />
+        <circle cx="240" cy="200" r="10" fill="#06d6a0" stroke="none" />
+        <path d="M120 300 L180 250 L240 200" stroke="#ffffff" stroke-width="6" />
+      </g>
+      <text x="600" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="56" fill="#ffffff" letter-spacing="-1">LearnCare Chart</text>
+    </svg>
+  </template>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- tweaks scaffolding (Babel) -->
+  <script type="text/babel" data-presets="react" src="tweaks-panel.jsx"></script>
+  <!-- shared icons & shell -->
+  <script type="text/babel" data-presets="react" src="shared.jsx"></script>
+  <!-- screens -->
+  <script type="text/babel" data-presets="react" src="screens/00-today.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/01-record.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/02-briefing.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/03-chart.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/04-prep.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/05-board.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/06-local.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/07-admin.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/08-school.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/09-subject-extras.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/10-school-local.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/11-district-extras.jsx"></script>
+  <!-- app shell (last) -->
+  <script type="text/babel" data-presets="react" src="app.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LearnCare Chart — MVP Prototype</title>
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <!-- Spoqa Han Sans Neo -->
+  <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" />
+  <!-- IBM Plex Sans KR + Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- mock data (plain JS, must load before babel scripts) -->
+  <script src="data.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <template id="__bundler_thumbnail" data-bg-color="#f5f4ef">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#f5f4ef"/>
+      <g transform="translate(450 240)">
+        <rect width="300" height="300" rx="48" fill="url(#g)"/>
+        <path d="M 60 220 L 130 170 L 190 200 L 250 90" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="60" cy="220" r="12" fill="#fff"/>
+        <circle cx="130" cy="170" r="12" fill="#fff"/>
+        <circle cx="190" cy="200" r="12" fill="#fff"/>
+        <circle cx="250" cy="90" r="12" fill="#fff"/>
+      </g>
+      <text x="600" y="640" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif" font-size="42" font-weight="700" fill="#2a2620" letter-spacing="-1">LearnCare Chart</text>
+      <text x="600" y="690" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif" font-size="20" font-weight="500" fill="#7a736a">학생 지원 통합 기록 시스템</text>
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3b5cdb"/>
+          <stop offset="100%" stop-color="#8a4fc9"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </template>
+
+  <!-- tweaks scaffolding (Babel) -->
+  <script type="text/babel" data-presets="react" src="tweaks-panel.jsx"></script>
+  <!-- shared icons & shell -->
+  <script type="text/babel" data-presets="react" src="shared.jsx"></script>
+  <!-- screens -->
+  <script type="text/babel" data-presets="react" src="screens/00-login.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/00-today.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/01-record.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/02-briefing.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/03-chart.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/04-prep.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/05-board.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/06-local.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/07-admin.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/08-school.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/09-subject-extras.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/10-school-local.jsx"></script>
+  <script type="text/babel" data-presets="react" src="screens/11-district-extras.jsx"></script>
+  <!-- app shell (last) -->
+  <script type="text/babel" data-presets="react" src="app.jsx"></script>
+</body>
+</html>
