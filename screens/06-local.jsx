@@ -268,4 +268,116 @@ function ResourceMap({ resources, selected, onSelect, radius }) {
   );
 }
 
+const LC_REAL_SCHOOL = {
+  name: "School",
+  lat: 37.5665,
+  lng: 126.9780,
+};
+
+function lcResourceLatLng(resource) {
+  const x = typeof resource.x === "number" ? resource.x : 50;
+  const y = typeof resource.y === "number" ? resource.y : 50;
+  return [
+    LC_REAL_SCHOOL.lat + (50 - y) * 0.00072,
+    LC_REAL_SCHOOL.lng + (x - 50) * 0.0009,
+  ];
+}
+
+function lcMarkerIcon(color, label) {
+  if (!window.L) return null;
+  return L.divIcon({
+    className: "",
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -24],
+    html: `<div style="width:24px;height:24px;background:${color};border:3px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,.24)"><span style="display:block;transform:rotate(45deg);font:700 9px/18px system-ui;color:white;text-align:center">${label || ""}</span></div>`,
+  });
+}
+
+ResourceMap = function RealResourceMap({ resources, selected, onSelect, radius }) {
+  const mapRef = React.useRef(null);
+  const nodeRef = React.useRef(null);
+  const layersRef = React.useRef({ markers: null, circle: null });
+
+  React.useEffect(() => {
+    if (!nodeRef.current || !window.L || mapRef.current) return;
+
+    const map = L.map(nodeRef.current, {
+      scrollWheelZoom: true,
+      zoomControl: true,
+    }).setView([LC_REAL_SCHOOL.lat, LC_REAL_SCHOOL.lng], 13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    const schoolIcon = lcMarkerIcon("var(--primary)", "S");
+    L.marker([LC_REAL_SCHOOL.lat, LC_REAL_SCHOOL.lng], schoolIcon ? { icon: schoolIcon } : {})
+      .addTo(map)
+      .bindPopup("<b>School</b><br />Assigned school center");
+
+    layersRef.current.markers = L.layerGroup().addTo(map);
+    mapRef.current = map;
+    setTimeout(() => map.invalidateSize(), 150);
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+      layersRef.current = { markers: null, circle: null };
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const map = mapRef.current;
+    const markerLayer = layersRef.current.markers;
+    if (!map || !markerLayer || !window.L) return;
+
+    markerLayer.clearLayers();
+    if (layersRef.current.circle) {
+      map.removeLayer(layersRef.current.circle);
+      layersRef.current.circle = null;
+    }
+
+    layersRef.current.circle = L.circle([LC_REAL_SCHOOL.lat, LC_REAL_SCHOOL.lng], {
+      radius: radius * 1000,
+      color: "var(--primary)",
+      weight: 2,
+      fillColor: "var(--primary)",
+      fillOpacity: 0.06,
+    }).addTo(map);
+
+    const bounds = L.latLngBounds([[LC_REAL_SCHOOL.lat, LC_REAL_SCHOOL.lng]]);
+
+    resources.forEach((resource, index) => {
+      const [lat, lng] = lcResourceLatLng(resource);
+      const color = LC.resourceTypeColor[resource.type] || "var(--primary)";
+      const icon = lcMarkerIcon(color, String(index + 1));
+      const marker = L.marker([lat, lng], icon ? { icon, title: resource.name } : { title: resource.name })
+        .bindPopup(`<b>${resource.name}</b><br />${resource.type || ""} ${resource.subtype || ""}<br />${resource.distance}km`);
+      marker.on("click", () => onSelect(resource));
+      markerLayer.addLayer(marker);
+      bounds.extend([lat, lng]);
+      if (selected && selected.id === resource.id) marker.openPopup();
+    });
+
+    if (resources.length > 0) {
+      map.fitBounds(bounds.pad(0.25), { maxZoom: 14 });
+    } else {
+      map.setView([LC_REAL_SCHOOL.lat, LC_REAL_SCHOOL.lng], 13);
+    }
+  }, [resources, selected, onSelect, radius]);
+
+  return (
+    <div className="map real-map" style={{height: 360}}>
+      {!window.L && (
+        <div className="muted" style={{padding: 16, fontSize: 12}}>
+          Loading map...
+        </div>
+      )}
+      <div ref={nodeRef} style={{position: "absolute", inset: 0}} />
+    </div>
+  );
+};
+
 window.LocalResources = LocalResources;
