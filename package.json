@@ -5,6 +5,7 @@
   "description": "LearnCare Chart public data contest mockup",
   "scripts": {
     "build": "node scripts/build.js",
+    "verify:map": "node scripts/verify-map.js",
     "start": "npx serve dist",
     "dev": "npx serve ."
   },
