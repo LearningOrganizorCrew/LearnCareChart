@@ -11,8 +11,8 @@ const files = [
   ["tweaks-panel.jsx", "tweaks-panel.jsx"],
   ["shared.jsx", "shared.jsx"],
   ["app.jsx", "app.jsx"],
-  ["LearnCare Chart (standalone).html", "LearnCare Chart (standalone).html"],
   ["LearnCare_Chart_v.23.html", "LearnCare_Chart_v.23.html"],
+  ["LearnCare_Chart_v29.html", "LearnCare_Chart_v29.html"],
 ];
 
 const directories = ["screens", "screenshots"];
