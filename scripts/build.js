@@ -13,6 +13,7 @@ const files = [
   ["app.jsx", "app.jsx"],
   ["LearnCare_Chart_v.23.html", "LearnCare_Chart_v.23.html"],
   ["LearnCare_Chart_v29.html", "LearnCare_Chart_v29.html"],
+  ["LearnCare_Chart_v30.html", "LearnCare_Chart_v30.html"],
 ];
 
 const directories = ["screens", "screenshots"];
